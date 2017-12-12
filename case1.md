@@ -6,7 +6,7 @@
 
 这篇文章，我们从量化的角度看看2017年的中国A股（B股太小，新三板不够透明，这里就不研究了）。
 
-从几个问题出发：（如果你想直接撸代码，请访问[这里](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/README.md)）
+从几个问题出发：（如果你想直接撸代码，请访问[这里](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/notebook/case1.ipynb)）
 
 ## 1. 你知道中国A股有多少只股票吗？
 
