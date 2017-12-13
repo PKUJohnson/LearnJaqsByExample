@@ -4,7 +4,7 @@ case 1 “初识A股”中，我们主要从宏观角度，看看中国资本市
 
 本案例中，我们通过一个有趣的例子，看看jaqs如何能帮助你快速进行个股量化研究。
 
-从几个问题出发：（如果你想直接撸代码，请访问[这里](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/notebook/case2.ipynb)）
+如果你想直接撸代码，请访问[这里](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/notebook/case2.ipynb)
 
 股市中有一个流行的谚语叫做：“三根阳线改变信仰”，指的是如果某只个股出现了连续三天上涨，可能会开始一波行情。
 
