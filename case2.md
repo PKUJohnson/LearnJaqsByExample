@@ -46,9 +46,11 @@ curr_date = 20171212
 
 dataview_props = {
     # Start and end date of back-test
-    'start_date': start_date, 'end_date': curr_date,
+    'start_date': start_date, 
+	'end_date': curr_date,
     # Investment universe and performance benchmark
-    'universe': UNIVERSE, 'benchmark': '000300.SH',
+    'universe': UNIVERSE, 
+	'benchmark': '000300.SH',
     # Data fields that we need
     'fields': 'close,open,high,low',
     # freq = 1 means we use daily data. Please do not change this.
@@ -69,11 +71,12 @@ dv.prepare_data()
 dv.add_formula('is_yang', '(close > open) && ( (close - open) / (high - low) >= 0.7)', is_quarterly=False)
 dv.add_formula('three_yang', 'is_yang && Delay(is_yang, 1) && Delay(is_yang, 2)', is_quarterly=False)
 
-# get the result
+# get the result three_yang == 1.0 means 三根阳线
 df = dv.get_snapshot(curr_date)
 df[df['three_yang'] == 1.0]
-
 ```
+
+这段代码直接了当，非常简洁。
 
 ## 3. 结果分析
 
