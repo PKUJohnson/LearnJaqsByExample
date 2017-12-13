@@ -89,6 +89,8 @@ df[df['three_yang'] == 1.0]
 
 用这种方法是否可以赚钱，应该还需要打一个问号。
 
+这个例子只是简单的秀了一下DataView，其实这只是它全部功能的百分之一。
+
 DataView的详细使用说明，请参考[这里](https://github.com/quantOS-org/JAQS/blob/master/doc/data_view.md)
 
 ## 4. 想尝试一下？
