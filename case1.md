@@ -49,7 +49,7 @@ print(len(df[df['market']=='SH']))
 JAQS刚好可以取出所有股票的发行日期，我们按照月度统计，看看股票发行数量的分布情况。
 
 ```python
-list_date = df['list_date']
+list_date = df['list_date'].astype(int)
 ser_year = list_date // 10000
 
 year_month = list_date // 100
@@ -220,7 +220,7 @@ df, msg = api.query(
                 data_format='pandas')
 
 df = df.set_index('symbol')
-df['return'] = df_diff
+df['return'] = df_return
 
 df = df[df['list_date'].astype(int)<20160101]
 
@@ -232,4 +232,9 @@ df.sort_values('return')
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case1-3.png)
 
 
+## 4. 想尝试一下？
+
+请访问www.quantos.org，下载安装JAQS，开始自己的量化旅程吧。
+
+这里的东西都是开源和免费的。
 
