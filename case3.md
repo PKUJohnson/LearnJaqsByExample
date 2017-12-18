@@ -213,7 +213,9 @@ for (symbol, index) in index_map.items():
                        risk_metrics['Maximum Drawdown end'])
                     )
 
-labels = ['symbol', 'index', 'AnnualReturn', 'AnnualVolatility', 'SharpeRatio', 'StratCumReturn', 'BenchCumReturn', 'Beta', 'MaximumDrawdown', 'MaximumDrawdownStart', 'MaximumDrawdownEnd']
+labels = ['symbol', 'index', 'AnnualReturn', 'AnnualVolatility', 'SharpeRatio', 
+          'StratCumReturn', 'BenchCumReturn', 'Beta', 
+		  'MaximumDrawdown', 'MaximumDrawdownStart', 'MaximumDrawdownEnd']
 
 df = pd.DataFrame.from_records(indicators, columns=labels)
 
