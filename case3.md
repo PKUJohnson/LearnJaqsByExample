@@ -57,20 +57,24 @@ df = get_fundlist(api, u'股票型', u'增强指数型')
 2. 取出每支基金对应的指数信息，代码如下：
 
 ```python
-def get_fundnav(api, symbol, start_date, end_date):
-    df, msg = api.query(
-        view="lb.mfNav",
-        fields="price_date, nav_adjusted",
-        filter="start_pdate=" + str(start_date) + "&end_pdate=" + str(end_date) + "&symbol=" + symbol,
-        data_format='pandas'
-    )
+def get_index_map(api, symbols, price_date):
     
-    if df is None:
-        print(df, msg)
-    
-    df.index = df['price_date'].astype(np.integer)
-    df.sort_index(inplace=True)
-    return df
+    symbollist = symbols.split(",")
+
+    result = {}
+    for symbol in symbollist:
+        df, msg = api.query(
+                    view="lb.mfTrackingIndex",
+                    fields="",
+                    filter="symbol=" + symbol + "&trade_date=" + str(price_date),
+                    data_format='pandas')
+        
+        if df is not None and len(df) > 0:
+            result[symbol] = df.loc[0]['index_code']
+        
+        time.sleep(0.01)
+        
+    return result
 
 start_date = 20161230
 curr_date  = 20171215
