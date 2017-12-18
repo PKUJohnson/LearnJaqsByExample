@@ -1,10 +1,12 @@
 # case 2：三根阳线改变信仰，使用DataView神器快速做研究
 
-case 1 “初识A股”中，我们主要从宏观角度，看看中国资本市场的整体情况。
+在case 1 “初识A股”中，我们主要从宏观角度，看看中国资本市场的整体情况。
 
 本案例中，我们通过一个有趣的例子，看看jaqs如何能帮助你快速进行个股量化研究。
 
-如果你想直接撸代码，请访问[这里](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/notebook/case2.ipynb)
+***注***：如果你想直接撸代码，请访问[这里](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/notebook/case2.ipynb)
+
+## 0. Case简介
 
 股市中有一个流行的谚语叫做：“三根阳线改变信仰”，指的是如果某只个股出现了连续三天上涨，可能会开始一波行情。
 
@@ -88,17 +90,13 @@ df[df['three_yang'] == 1.0]
 
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case2-4.png)
 
-观察上述三只股票在2017年12月13日的走势，发现有两支下跌，一只上涨。
+观察上述三只股票在2017年12月13日的走势，发现有两支下跌，一只上涨。因而用这种方法是否可以赚钱，应该还需要打一个问号。
 
-用这种方法是否可以赚钱，应该还需要打一个问号。
-
-这个例子只是简单的秀了一下DataView，其实这只是它全部功能的百分之一。
-
-DataView的详细使用说明，请参考[这里](https://github.com/quantOS-org/JAQS/blob/master/doc/data_view.md)
+这个例子只是简单的秀了一下DataView，其实这只是它全部功能的百分之一。详细使用说明，请参考[这里](https://github.com/quantOS-org/JAQS/blob/master/doc/data_view.md)
 
 ## 4. 想尝试一下？
 
-请访问www.quantos.org，下载安装JAQS，开始自己的量化旅程吧。
+请访问[www.quantos.org](www.quantos.org)，下载安装JAQS，开始自己的量化旅程吧。
 
 这里的东西都是开源和免费的。
 
