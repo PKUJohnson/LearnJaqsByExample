@@ -227,7 +227,7 @@ df.sort_values('AnnualReturn')
 
 ```
 
-注意，期间可能需要手工去掉几个基金名称里面不带A的分级A。
+注意，期间可能需要手工去掉几个分级A和分级B。
 
 运行之后，我们得到如下的结果。[case3.xls](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/notebook/case3.xls)
 
@@ -247,11 +247,11 @@ AnnualReturn：2.92%，SharpeRatio：1.21，Beta：0.97
 
 |symbol    |index     |AnnualReturn|AnnualVolatility|SharpeRatio|
 |------    |-----     |------------|----------------|-----------|
-|150136.SZ |000903.SH |	53.28 	   |16.34 	        |3.26       | 
 |003647.OF |000852.SH |	14.99 	   |2.63 	        |5.70       | 
 |002316.OF |000905.SH |	11.04 	   |3.18 	        |3.47       | 
+|000311.OF |000300.SH |	10.81 	   |3.95 	        |2.74       | 
 
-增强收益都超过了11%，sharpe比率超过3。
+增强收益都超过了10%，sharpe比率超过2.7。
 
 **_表现最差的三只基金及其收益情况_**
 
@@ -263,23 +263,7 @@ AnnualReturn：2.92%，SharpeRatio：1.21，Beta：0.97
 
 增强收益都超过了-6.6%，sharpe比率也很低。
 
-150136.SZ(国富100B)很有意思，其与基准的之间的比较图如下：
-
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case3-3.png)
-
-其大幅跑赢中证100指数，超额收益超过年化53%。作者试图寻找其中的原因，将其业绩回溯到更早的区间，发现了其中的一点点线索：
-
-如果将时间回溯到150136.SZ成立的2015年3月，其整个业绩表现是不如指数的，如下图所示：
-
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case3-4.png)
-
-2016年5月新增加一名基金经理之后，业绩开始大幅回升，特别是2016年9月份之后，业绩一路超过基准。如下图所示：
-
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case3-5.png)
-
-看来新基金经理的作用还是很明显的。
-
-另一个值得表扬的基金经理是003647.OF（创金合信中证1000），其业绩表现如下图：
+值得表扬的基金经理是003647.OF（创金合信中证1000），其业绩表现如下图：
 
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case3-6.png)
 
