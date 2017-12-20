@@ -16,9 +16,9 @@ vnpy目前最稳定的python环境是py2.7（32位），因此我们建议的安
 
 ### 下载并安装vnpy。
 
-**需要注意，不能使用pip安装，需要从github下载master分支的代码**
+**需要注意，不能使用pip安装，需要从github下载dev分支的代码**
 
-[下载地址](https://github.com/vnpy/vnpy)，注意选择master分支。
+[下载地址](https://github.com/vnpy/vnpy)，注意选择dev分支。
 
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case4-2.png)
 
@@ -46,7 +46,7 @@ pip install jaqs
 
 ## 3. 启动vnpy的JAQS服务
 
-进入刚才下载的vnpy的代码目录，位于examples\VnTrader下，目录下的文件结构如下：
+进入刚才下载的vnpy的代码目录，位于examples\JaqsService下，目录下的文件结构如下：
 
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case4-5.png)
 
@@ -78,7 +78,7 @@ JS_setting.json
 + JS_setting.json  配置JAQS的服务监听地址，一般不用修改。
 + CTP_connect.json 配置CTP服务器地址和账户信息，需要修改成你实盘的地址和账户信息。
 
-run_jaqs.py
+run.py
 ```python
 def main():
     """主程序入口"""
@@ -107,7 +107,7 @@ run_jaqs.py是一个主程序，在这个主程序里面，添加了ctpGateway�
 
 ctpGateway是真正的实盘交易通道，jaqsService是服务转接模块。
 
-启动方法很简单，运行 python run_jaqs.py 即可！
+启动方法很简单，运行 python run.py 即可！
 
 运行成功，则会出现vnpy经典的主界面，如下图所示：
 
