@@ -54,7 +54,7 @@ pip install jaqs
 
 + CTP_connect.json - CTP连接的信息
 + JS_setting.json - JAQS服务信息
-+ run_jaqs.py - 启动JAQS的脚本
++ run.py - 启动JAQS的脚本
 
 CTP_connect.json
 ```
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     main()
 ```
 
-run_jaqs.py是一个主程序，在这个主程序里面，添加了ctpGateway和jaqsService两个模块。
+run.py是一个主程序，在这个主程序里面，添加了ctpGateway和jaqsService两个模块。
 
 ctpGateway是真正的实盘交易通道，jaqsService是服务转接模块。
 
