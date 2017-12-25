@@ -28,11 +28,11 @@
 
 行情信息主要包括：
 
-(1) 最新成交时间、总成交量、总成绩金额
-(2) 今日开盘价、最高价、最低价、最新价
-(3) 涨停价、跌停价
-(4) 买卖队列信息
-(5) 持仓量、结算价(适用期货和期权合约) 
++ (1) 最新成交时间、总成交量、总成绩金额
++ (2) 今日开盘价、最高价、最低价、最新价
++ (3) 涨停价、跌停价
++ (4) 买卖队列信息
++ (5) 持仓量、结算价(适用期货和期权合约) 
 
 在JAQS里，可以通过下面的代码，快速获取行情信息：
 
@@ -179,13 +179,13 @@ df, msg = api.daily(
 
 主要包括两部分：
 
-(1) 实时行情：quantOS提供DataCore项目，支持对接ctp期货行情和sina、tencent股票行情，qms实时合成分钟线，并保留所有的tick数据。DataServer统一对外提供实时行情和分钟线服务。
-(2) 历史行情：每日日终，使用tk2bar工具，可以将tick数据转化成分钟线，并通过DataServer对外提供服务。
++ (1) 实时行情：quantOS提供DataCore项目，支持对接ctp期货行情和sina、tencent股票行情，qms实时合成分钟线，并保留所有的tick数据。DataServer统一对外提供实时行情和分钟线服务。
++ (2) 历史行情：每日日终，使用tk2bar工具，可以将tick数据转化成分钟线，并通过DataServer对外提供服务。
 
 逻辑架构图如下：
 
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case5-5.png)
 
-详细信息请登录www.quantos.org索取。
+详细信息请登录[www.quantos.org](www.quantos.org)索取。
 
 
