@@ -173,7 +173,37 @@ df, msg = api.daily(
 + 前复权，即以历史某天的价格为基础，根据复权因子调整后续的价格。
 + 后复权，即以今天的价格为基础，根据复权因子调整之前的价格
 
-在JAQS里面，只需要使用adjust_mode参数，设置成'post'(后复权)或'pre'(前复权)，系统会自动进行复权处理。
+在JAQS中，很容易通过下面的代码，获取股票的复权因子。
+
+```python
+from jaqs.data import DataApi
+api = DataApi(addr='tcp://data.tushare.org:8910')
+api.login("phone", "token") 
+
+df, msg = api.query(
+                  view="lb.secAdjFactor",
+                  fields="",
+                  filter="symbol=603888.SH&start_date=20170615&end_date=20170625",
+                  data_format='pandas')
+  
+print(df, msg)
+```
+
+我们得到如下的结果：
+
+|adjust_factor|     symbol| trade_date|
+|-------------|-----------|-----------|
+|    1.019211 | 603888.SH |  20170615 |
+|    1.019211 | 603888.SH |  20170616 |
+|    1.019211 | 603888.SH |  20170619 |
+|    1.019211 | 603888.SH |  20170620 |
+|    1.019211 | 603888.SH |  20170621 |
+|    2.547727 | 603888.SH |  20170622 |
+|    2.547727 | 603888.SH |  20170623 |
+
+可以看到，603888.SH（新华网）在20170622和20170621的复权因子发生了变化，比例刚好接近2.5。
+
+在JAQS获取日线时，只需要使用adjust_mode参数，设置成'post'(后复权)或'pre'(前复权)，系统会自动进行复权处理。
 
 ## 如何利用quantOS构建自己的行情系统
 
@@ -186,6 +216,6 @@ df, msg = api.daily(
 
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case5-5.png)
 
-详细信息请登录[www.quantos.org](www.quantos.org)索取。
+详细信息请登录[www.quantos.org](www.quantos.org)，按DataCore项目文档进行操作。
 
 
