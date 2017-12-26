@@ -85,14 +85,14 @@ task_id, msg = tapi.basket_order(orders)
 
 在API的下单方式上，我们提供：
 
-+ 单标的下单
-+ 一篮子下单
-+ 目标持仓下单
++ 单标的下单（place_order）
++ 一篮子下单（place_batch_order，basket_order）
++ 目标持仓下单（goal_portfolio）
 
 其中的下单方式，又支持两个特性：
 
-+ 使用绝对数量下单和变化量下单
-+ 普通下单和使用算法下单
++ 使用绝对数量下单和变化量下单（action + size，inc_size）
++ 普通下单和使用算法下单（algo，algo_param）
 
 目标持仓下单是一种调仓的交易方式，即将当前持仓调整成目标持仓，系统会自动生成相应的差异订单。
 当前的持仓可以通过query_portfolio查询。
@@ -298,8 +298,6 @@ vnTrader是一个可视化的下单工具，帮助用户下单和监控成交情
 ## 0. 软件下载。
 + 请首先安装[JAQS](https://github.com/quantOS-org/JAQS)，如已安装，请忽略。
 + 请从[这里](https://github.com/quantOS-org/TradeSim/tree/master/vnTrader)下载vnTrader, 如已下载，请忽略.
-+ vnTrader运行需要依赖pyqt4，请从[这个网页](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4)下载相应的版本，并安装。  
-例如，python2.7环境，64位的机器，请下载`PyQt4-4.11.4-cp27-cp27m-win_amd64.whl`，执行`pip install PyQt4-4.11.4-cp27-cp27m-win_amd64.whl`，其他平台类推。
 
 #### 1. 请在vnTrader程序目录，通过如下命令启动vnTrader:
 ```shell
@@ -334,11 +332,10 @@ python vtMain.py
 
 有两种方式可以撤单：
 
-1. 点击交易模块的“全撤”按钮。
-2. 双击委托模块的指定委托记录。
++ 1. 点击交易模块的“全撤”按钮。
++ 2. 双击委托模块的指定委托记录。
 
 ![](https://github.com/quantOS-org/TradeSim/blob/master/doc/img/vnTrader_cancel.png)
-
 
 ### 仿真交易网页
 
@@ -352,5 +349,3 @@ python vtMain.py
 ![](https://github.com/quantOS-org/quantOSUserGuide/blob/master/assets/tradesim_pnl.PNG?raw=true)
 
 + 目前只有查询功能（实时、历史），未来会有更多丰富的分析功能、交易功能等
-
-
