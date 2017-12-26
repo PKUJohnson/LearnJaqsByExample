@@ -332,8 +332,8 @@ python vtMain.py
 
 有两种方式可以撤单：
 
-+ 1. 点击交易模块的“全撤”按钮。
-+ 2. 双击委托模块的指定委托记录。
+1. 点击交易模块的“全撤”按钮。
+2. 双击委托模块的指定委托记录。
 
 ![](https://github.com/quantOS-org/TradeSim/blob/master/doc/img/vnTrader_cancel.png)
 
