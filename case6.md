@@ -35,7 +35,8 @@ df, msg = tapi.query_universe()
 # 查询Portfolio, 返回当前的策略帐号的Universe中所有标的的净持仓，包括持仓为0的标的
 df, msg = tapi.query_portfolio()
 
-# 查询当前策略帐号的所有持仓,和 query_portfolio接口不一样。如果莫个期货合约 Long, Short两个方向都有持仓，这里是返回两条记录 返回的 size 不带方向，全部为正
+# 查询当前策略帐号的所有持仓,和 query_portfolio接口不一样。
+# 如果莫个期货合约 Long, Short两个方向都有持仓，这里是返回两条记录 返回的 size 不带方向，全部为正
 df, msg = tapi.query_position()
 
 # 单标的下单
