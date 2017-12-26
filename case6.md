@@ -134,6 +134,50 @@ df, msg = api.use_strategy(1)
 + Q: 如何判断下单成功了
 + A: 返回了TaskID，表明下单成功。TaskID是一个长整数，例如：10081226000039L
 
+### 撮合机制
+
+撮合是仿真交易的核心模块，目前采取的撮合机制是按实时价格进行撮合，工作原理如下：
+
++ 撮合引擎监控每个市场tick，根据tick的最新价，对发送到系统的未成交委托进行模拟撮合。
++ 如果最新价和订单可以成交，则生成成交记录，并更新订单信息。
++ 目前的撮合不考虑成交量的影响，未来会继续改进。
+
+### 成交推送
+
++ TradeSim通过TradeApi提供完备的推送事件，助力策略提高响应效率。
++ TradeApi通过回调函数方式通知用户事件。事件包括三种：订单状态、成交回报、委托任务执行状态。
+
+- 订单状态推送
+```python
+def on_orderstatus(order):
+    print "on_orderstatus:" #, order
+    for key in order:    
+        print "%20s : %s" % (key, str(order[key]))
+```
+
+- 成交回报推送
+```python
+def on_trade(trade):
+    print "on_trade:"
+    for key in trade:    
+        print "%20s : %s" % (key, str(trade[key]))
+```
+
+- 委托任务执行状态推送，通常可以忽略该回调函数
+```python
+def on_taskstatus(task):
+    print "on_taskstatus:"
+    for key in task:    
+        print "%20s : %s" % (key, str(task[key]))
+```
+
+设置回调函数
+```python
+tapi.set_ordstatus_callback(on_orderstatus)
+tapi.set_trade_callback(on_trade)
+tapi.set_task_callback(on_taskstatus)
+```
+
 ### 算法交易
 
 目前TradeSim提供TWAP和VWAP下单算法.
@@ -307,4 +351,5 @@ python vtMain.py
 ![](https://github.com/quantOS-org/quantOSUserGuide/blob/master/assets/tradesim_pnl.PNG?raw=true)
 
 + 目前只有查询功能（实时、历史），未来会有更多丰富的分析功能、交易功能等
+
 
