@@ -73,16 +73,14 @@ orders = [
 task_id, msg = tapi.basket_order(orders)
 ```
 
-这里有几个非常重要的概念需要，如图：
+这里有几个非常重要的概念，如图：
 
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case6-1.png)
 
-+ 仿真交易系统会为每个账户自动分配三个可管理的Strategy，这里的Strategy是一个交易Book的编号，用于管理持仓和交易。
-+ 每个Strategy对应有一个Universe，即可投资的标的范围，如中证500或沪深300。
++ 仿真交易系统会为每个账户自动分配三个Strategy，这里的Strategy是一个交易Book的编号，用于管理持仓和交易。
++ 每个Strategy对应有一个Universe，即可投资的标的范围，如中证500或沪深300，专业投资一般都会限定投资范围，不能超出范围投资。
 
 这是典型自营交易机构的业务架构，可支持多交易员进行交易。
-
-每个Strategy需要指定一个Universe，这也是普通投资者需要理解的概念，即专业投资一般都会限定投资范围，不能超出范围投资。
 
 在API的下单方式上，我们提供：
 
@@ -102,8 +100,8 @@ task_id, msg = tapi.basket_order(orders)
 
 用户在使用TradeApi进行仿真交易时，常常遇到一些问题，这里详细解答
 
-Q: 如何获取我的策略号？
-A: 登录成功后，系统自动返回策略信息
++ Q: 如何获取我的策略号？
++ A: 登录成功后，系统自动返回策略信息
 ```python
 user_info, msg = tapi.login("phone", "token")     
 print(user_info['strategies'])
@@ -112,27 +110,29 @@ for (key, value) in accounts.items():
     print(u"%s, %s" % (key, value))
 ```
 系统会返回：
+```
 [1008, 1009, 1010, 3919]
 1010, 股指期货
 3919, 商品期货
 1009, 中证500
 1008, 沪深300
+```
 
-Q: 调用返回 -1,NO PRIVILEGE
-A: 这是由于use_strategy没有使用正确的strategy_no.
++ Q: 调用返回 -1,NO PRIVILEGE
++ A: 这是由于use_strategy没有使用正确的strategy_no.
 ```python
 df, msg = api.use_strategy(1)
 ```
 详见上面的问题“如何获取我的策略号”
 
-Q: 调用返回 -1,000025.SZ not in UNIVERSE
-A: 这是由于你使用的标的不在Universe范围内，属于超投资范围的标的，不允许下单。可以通过query_universe接口查询可投资标的。
++ Q: 调用返回 -1,000025.SZ not in UNIVERSE
++ A: 这是由于你使用的标的不在Universe范围内，属于超投资范围的标的，不允许下单。可以通过query_universe接口查询可投资标的。
 
-Q: 调用返回 -1,risk rule violated: inst[10063] rule[1] expects price_diff[0.86152841280209] <= 0.03
-A: 下单价格超出风控范围。系统目前自动设置了一个3%的涨跌幅限制，任何超过当前最新价3%的委托，都会被拒绝
++ Q: 调用返回 -1,risk rule violated: inst[10063] rule[1] expects price_diff[0.86152841280209] <= 0.03
++ A: 下单价格超出风控范围。系统目前自动设置了一个3%的涨跌幅限制，任何超过当前最新价3%的委托，都会被拒绝
 
-Q: 如何判断下单成功了
-A: 返回了TaskID，表明下单成功。TaskID是一个长整数，例如：10081226000039L
++ Q: 如何判断下单成功了
++ A: 返回了TaskID，表明下单成功。TaskID是一个长整数，例如：10081226000039L
 
 ### 算法交易
 
@@ -163,8 +163,8 @@ params = {
 
 # Single Order Style
 task_id, msg = tapi.place_order("600000.SH", "Buy", 17, 100, "vwap", params)
-print "msg:", msg
-print "task_id:", task_id
+print("msg:", msg)
+print("task_id:", task_id)
 
 # Batch Order Style
 orders = [
@@ -179,8 +179,8 @@ params = {
 }
 
 task_id, msg = tapi.place_batch_order(orders, "vwap", params)
-print "msg:", msg
-print "task_id:", task_id
+print("msg:", msg)
+print("task_id:", task_id)
 
 # Basket Order Style
 orders = [
@@ -195,9 +195,8 @@ params = {
 }
 
 task_id, msg = tapi.basket_order(orders, "vwap", params)
-print "msg:", msg
-print "task_id:", task_id
-
+print("msg:", msg)
+print("task_id:", task_id)
 ```
 
 #### 以TWAP为例，样例代码如下：
@@ -225,6 +224,8 @@ params = {
 }
 
 task_id, msg = tapi.place_order("600868.SH", "Buy", 6.57, 100, "twap", params)
+print("msg:", msg)
+print("task_id:", task_id)
 
 # Batch Order Style
 orders = [
@@ -240,6 +241,8 @@ params = {
 }
 
 task_id, msg = tapi.place_batch_order(orders, "twap", params)
+print("msg:", msg)
+print("task_id:", task_id)
 
 ```
 
