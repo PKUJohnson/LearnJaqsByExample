@@ -31,14 +31,14 @@ from jaqs.data import DataView
 
 data_config = {
   "remote.data.address": "tcp://data.tushare.org:8910",
-  "remote.data.username": "18612562791",
-  "remote.data.password": "eyJhbGciOiJIUzI1NiJ9.eyJjcmVhdGVfdGltZSI6IjE1MTI2NTczNDEzMDQiLCJpc3MiOiJhdXRoMCIsImlkIjoiMTg2MTI1NjI3OTEifQ.gGA4qLXQ9KgkN_KntXSK8dVpzBHMEaIiGXX3JpALTpc"
+  "remote.data.username": "phone",
+  "remote.data.password": "token"
 }
 
 trade_config = {
   "remote.trade.address": "tcp://gw.quantos.org:8901",
-  "remote.trade.username": "18612562791",
-  "remote.trade.password": "eyJhbGciOiJIUzI1NiJ9.eyJjcmVhdGVfdGltZSI6IjE1MTI2NTczNDEzMDQiLCJpc3MiOiJhdXRoMCIsImlkIjoiMTg2MTI1NjI3OTEifQ.gGA4qLXQ9KgkN_KntXSK8dVpzBHMEaIiGXX3JpALTpc"
+  "remote.trade.username": "phone",
+  "remote.trade.password": "token"
 }
 
 dataview_folder = './data'
