@@ -235,11 +235,11 @@ if __name__ == "__main__":
 
 1. pnl曲线
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/7-1.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case7-1.png)
 
 2. 策略表现指标，包括相对年化收益，年化波动率，sharpe比率，Beta，最大Drawdown等
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/7-2.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/case7-2.png)
 
 3. 详细的交易信息，可作为策略运行正确性的验证，都保存在文件中。如下表：
 
