@@ -2,7 +2,7 @@
 
 
 """
-roe_yearly above 15%
+roe_yearly above 20%
 roa_yearly above 5%
 
 not new stock (listed before one year)
@@ -11,7 +11,7 @@ equal weight
 universe : all sotcks
 init_balance = 1e8
 
-start_date 20130101
+start_date 20160101
 end_date   20171231
 
 """
