@@ -6,6 +6,8 @@ JAQS提供两大类的策略模板
 
 作者将通过一系列的策略样例，逐渐打开JAQS策略系统的神秘面纱。本文是第一篇：初识alpha策略框架。
 
+这里是全部的[源代码](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/notebook/case7.py)
+
 ## Alpha策略框架及JAQS实现
 
 一个专业且严谨的alpha股票策略的研究流程如下图所示：
