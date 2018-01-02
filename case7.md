@@ -53,7 +53,7 @@ ROE：净资产收益率ROE(Rate of Return on Common Stockholders’ Equity) = �
 
 ROA：资产收益率（Return on Assets，ROA）= 净利润 / 总资产
 
-这两个指标都是反映公司资产回报率的。
+这两个指标都是反映公司资产回报率的，季度更新，根据最新季度的财报，扩展到年化roe。
 
 ## Alpha策略代码
 
@@ -111,9 +111,19 @@ def save_dataview():
 + 系统在扩展季度数据到每日的时候，会考虑数据的point-in-time问题，避免look-ahead bias（未来函数）
 + 将DataView获取的数据保存到本地，供后面的回测使用。（**可以反复使用**）
 
-DataView具有非常强大的数据处理能力，具体的用法，请参看[DataView使用说明](https://github.com/quantOS-org/JAQS/blob/master/doc/data_view.md)
+这里面使用的参数：约定roe年化回报不低于20%，roa年化回报不低于5%。同时满足这两个条件才行。
 
-后面的系列文章里，我们会找机会全面介绍DataView。
+DataView具有非常强大的数据处理能力，随便看几个：
++ 可以通过字段定义，自动加载历史数据
++ 自动对价格数据进行复权处理
++ 通过公式生成衍生数据，支持各类常见函数和运算符
++ 可以本地保存，多次反复使用
++ 可以自动将季度数据扩展到每日，并考虑数据的point-in-time问题
++ 理论上，用户可以自行扩展自己的数据接口
+
+具体的用法，请参看[DataView使用说明](https://github.com/quantOS-org/JAQS/blob/master/doc/data_view.md)
+
+后面的系列文章里，我们会找机会全面介绍DataView的实现原理。
 
 ```python
 # step2: define a stock selector
@@ -180,6 +190,7 @@ def alpha_strategy_backtest():
     bt.save_results(folder_path=backtest_result_folder)
 ```
 这是回测的核心代码，主要做了几件事：
++ 定义了回测参数，如时间段、初始资金、调仓周期、持仓比例
 + 将DataView的数据从本地加载进来
 + 定义了一个投资标的过滤器model.StockSelector
 + 定义了一个AlphaStrategy的策略实例
@@ -215,7 +226,7 @@ if __name__ == "__main__":
     t3 = time.time() - t_start
     print("\n\n\nTime lapsed in total: {:.1f}".format(t3))
 	
-'''
+```
 这段代码是主函数，将上述流程组织起来。
 
 ## Alpha策略回测结果
