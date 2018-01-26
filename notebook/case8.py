@@ -12,7 +12,7 @@ import jaqs.trade.analyze as ana
 import jaqs.util as jutil
 
 data_config = {
-  "remote.data.address": "tcp://10.2.0.14:8910",
+  "remote.data.address": "tcp://data.quantos.org:8910",
   "remote.data.username": "xxx",
   "remote.data.password": "xxx"
 }
