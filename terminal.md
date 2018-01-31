@@ -43,7 +43,7 @@ quantos金融终端试图打破这种“尴尬”局面，打造“可编程金�
 
 ### 下载软件
 
-请登录https://www.quantos.org，进入“金融终端”频道，在“下载地址”里面，找到自己需要的版本。目前支持windows和mac两个平台。
+请登录[官方网站](https://www.quantos.org)，进入“金融终端”频道，在“下载地址”里面，找到自己需要的版本。目前支持windows和mac两个平台。
 
 网盘下载：
 + 试用版[quantos-mac.pkg](https://pan.baidu.com/s/1htKCTNY)
