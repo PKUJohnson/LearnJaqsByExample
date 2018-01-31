@@ -45,6 +45,14 @@ quantos金融终端试图打破这种“尴尬”局面，打造“可编程金�
 
 请登录https://www.quantos.org，进入“金融终端”频道，在“下载地址”里面，找到自己需要的版本。目前支持windows和mac两个平台。
 
+网盘下载：
++ 试用版[quantos-mac.pkg](https://pan.baidu.com/s/1htKCTNY)
++ 试用版[quantos-win-x64.exe](https://pan.baidu.com/s/1bqL3efd)
+
+官网下载:
++ 试用版[quantos-mac.pkg](http://downloads.quantos.org:9080/quantos-mac.pkg)
++ 试用版[quantos-win-x64.exe](http://downloads.quantos.org:9080/quantos-win-x64.exe)
+
 ### 安装软件
 
 这个很简单，请按照安装向导，一步一步完成安装即可！Windows下建议把软件安装在D:盘，避免各种权限问题。
