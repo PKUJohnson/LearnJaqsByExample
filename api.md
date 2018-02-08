@@ -28,9 +28,61 @@ df, msg = api.query(
 | 指数成份股表       | lb.indexCons          | 指数       |
 | 公募基金净值表     | lb.mfNav              | 基金       |
 
-## 分红送股（lb.secDividend）
+## 接口查询（help.apiList）
  
 ### 接口说明
+ 
+查询quantos支持那些业务接口。
+ 
+### 输入参数
+ 
+| 字段 | 字段中文名 | 类型 | 输入标志 | 说明 |
+| --- | --- | --- | --- | --- |
+| api | 参考数据接口 | String | N |  |
+| name | 参考数据中文名 | String | N |  |
+ 
+### 输入参数
+ 
+| 字段 | 字段中文名 | 类型 | 输出标志 | 说明 |
+| --- | --- | --- | --- | --- |
+| api | 参考数据接口 | String | Y |  |
+| name | 参考数据中文名 | String | Y |  |
+| comment | 注释 | String | Y |  |
+
+### 接口说明备注(适用于所有接口)
+
++ Y : 必须输入或输出
++ N : 可选输入或输出，如果是输出参数，可以在fields里面指定。
+
+## 接口参数查询（help.apiParam）
+ 
+查询具体某个接口的输入和输出参数。
+ 
+### 输入参数
+ 
+| 字段 | 字段中文名 | 类型 | 输入标志 | 说明 |
+| --- | --- | --- | --- | --- |
+| api | 参考数据接口 | String | N |  |
+| ptype | 参数类型 | String | N | IN为输入参数，OUT为输出参数 |
+| param | 参数代码 | String | N |  |
+| must | 是否必要 | String | N | Y为必要参数，N为非必要参数 |
+| pname | 参数中文名 | String | N |  |
+ 
+### 输入参数
+ 
+| 字段 | 字段中文名 | 类型 | 输出标志 | 说明 |
+| --- | --- | --- | --- | --- |
+| api | 参考数据接口 | String | Y |  |
+| param | 参数代码 | String | Y |  |
+| ptype | 参数类型 | String | Y | IN为输入参数，OUT为输出参数 |
+| dtype | 数据类型 | String | Y | String为字符串，Int为整型，Double为浮点型 |
+| must | 是否必要 | String | Y | Y为必要参数，N为非必要参数 |
+| pname | 参数中文名 | String | Y |  |
+| comment | 注释 | String | Y |  |
+
+## 分红送股（lb.secDividend）
+
+查询股票的分红和送股信息。 
  
 ### 输入参数
  
