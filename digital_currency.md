@@ -402,7 +402,7 @@ quote, msg = agent.get_quote('btcusd')
 quote.to_string()
 ```
 output:
-```python
+```html
 ask : 7498.880000 0.00000000
 bid : 7342.810000 0.00000000
 open: 0.000000 high : 7950.240000
@@ -466,7 +466,7 @@ quote.to_string()
 ```
 
 output: 
-```python
+```html
 ask : 6765.120000 0.00000000
 bid : 6759.140000 0.00000000
 open: 7027.260000 high : 7175.830000
@@ -526,7 +526,7 @@ quote.to_string()
 ```
 
 output:
-```python
+```html
 ask : 6755.120000 0.00000000
 bid : 6755.110000 0.00000000
 open: 7027.260000 high : 7175.830000
