@@ -49,13 +49,17 @@ aqi_hour.head(10)
 ```
 我们可以得到如下的数据序列：
 
+图1：2018-05-27各大城市AQI数据
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi.jpg)
 
+图2：最新的各大城市AQI数据（时点）
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_hour_aqi.jpg)
 
+图3：北京历史AQI数据
 ![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi_onecity.jpg)
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi_onecity.jpg)
+图4：北京2018-05-26的AQI小时数据
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_hour_aqi_onecity.jpg)
 
 ## Case 2 : 获取实时全国AQI数据并画地图展示
 
