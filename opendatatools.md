@@ -49,13 +49,13 @@ aqi_hour.head(10)
 ```
 我们可以得到如下的数据序列：
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi.jpg)
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_hour_aqi.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_hour_aqi.jpg)
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi_onecity.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi_onecity.jpg)
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi_onecity.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/get_daily_aqi_onecity.jpg)
 
 ## Case 2 : 获取实时全国AQI数据并画地图展示
 
@@ -117,7 +117,7 @@ draw_realtime_aqi_map()
 	
 ```
 得到的图形如下：
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/realtime_aqi_map.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/realtime_aqi_map.jpg)
 
 ### 点评：中国的空气污染，大多集中在北方地区。大首都治理空气质量，还是要下狠心啊。
 
@@ -180,7 +180,7 @@ draw_his_aqi_map('2018-05-27')
 	
 ```
 得到的图形如下：
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/his_aqi_map.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/his_aqi_map.jpg)
 
 ## Case 4 : 看某几个城市历史一段时间的走势图
 
@@ -224,7 +224,7 @@ draw_city_aqi(['北京市','上海市', '广州市', '深圳市', '三亚市'], 
 	
 ```
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/his_aqi_city.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/his_aqi_city.jpg)
 
 三亚的确是人间天堂，深圳也很不错，大北京大上海大广州就要相形见绌了。
 
@@ -260,7 +260,7 @@ draw_city_aqi_hour(['北京市', '上海市', '广州市', '深圳市', '三亚�
 	
 ```
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/realtime_aqi_city.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/realtime_aqi_city.jpg)
 
 #### 大北京，你今天发生了什么？如何让AQI从爆表变成优秀？
 
@@ -275,4 +275,4 @@ draw_city_aqi_hour(['北京市', '上海市', '广州市', '深圳市', '三亚�
 
 3. 完整的样例程序，请在www.quantos.org下载金融终端后获取。方法如下：
 
-![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/terminal_lecture.png)
+![](https://github.com/PKUJohnson/LearnJaqsByExample/blob/master/image/opendatatools/aqi/terminal_lecture.jpg)
