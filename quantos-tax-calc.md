@@ -124,7 +124,20 @@ def show_tax_info(incm, bonus):
 
 
 ```python
-# 我是一个月薪20000，年终奖10万的码农
+# 我是一个公交司机，扣除五险一金后，月薪4500，年终奖1万
+show_tax_info(4500, 10000)
+```
+
+    现个税：660.0
+    新个税：120.0
+    降税：540.0
+    现个税率：1.03%
+    新个税率：0.19%
+    
+
+
+```python
+# 我是一个软件工程师，扣除五险一金后，月薪20000，年终奖10万
 show_tax_info(20000, 100000)
 ```
 
@@ -137,7 +150,7 @@ show_tax_info(20000, 100000)
 
 
 ```python
-# 老板是一个月薪8万，年终奖60万的大佬
+# 部门经理是一个月薪8万，年终奖60万的大佬
 show_tax_info(80000, 600000)
 ```
 
@@ -148,15 +161,42 @@ show_tax_info(80000, 600000)
     新个税率：31.61%
     
 
+
+```python
+# CEO是一个月薪10万，年终奖300万的大佬
+show_tax_info(100000, 3000000)
+```
+
+    现个税：1695535.0
+    新个税：1681080.0
+    降税：14455.0
+    现个税率：40.37%
+    新个税率：40.03%
+    
+
 ### 结论很劲爆：
 
-1. 我作为小小的码农，税果然降了不少，个税率下降了5个多百分点
+|纳税人|月薪（扣五险一金后）|年终奖|现纳税金额|新纳税金额|税额减少|现综合税率|新综合税率|税率减少|
+|-----|------------------|-----|---------|----------------|---------|---------|-------|
+|公交司机|4500|10000|660|120|540|1.03%|0.19%|0.84%|
+|软件工程师|20000|100000|56885|39080|17805|16.73%|11.49%|5.24%|
+|部门经理|80000|600000|432485|493080|-60595|27.72%|31.61%|-3.89%|
+|CEO|100000|3000000|1695535|1681080|14455|40.37%|40.03%|0.34%|
 
-2. 老板就惨了，不但没有降税，居然还要多交6万的税，税率上升了4个百分点。
+
+1. 原来在一线工作的公交司机，税下降幅度最大。
+
+2. 作为小小的码农，税果然降了不少，个税率下降了5个多百分点
+
+3. 部门经理最惨，不但没有降税，居然还要多交6万的税，税率上升了4个百分点。
+
+4. CEO这么高的收入，居然税收也是降的，虽然变化不大。这比部门经理要好多了。
 
 **** 原来在新的税制下，并不是所有人都减税了 ****
 
-## 第三部分：旧税制的规则及其不合理的地方
+那么问题来了，是什么导致了这样的结果呢？经过仔细分析，我们发现其实是现行的税制不合理造成的。
+
+## 第三部分：现行税制的规则及其不合理的地方
 
 1. 年终奖累进税制，不合理
 
@@ -165,7 +205,7 @@ show_tax_info(80000, 600000)
 下面我们用数据和图表说话
 
 
-### 3.1 旧税制年终奖纳税曲线
+### 3.1 现行税制年终奖纳税曲线
 
 
 ```python
@@ -6478,9 +6518,9 @@ myChart_736c964eaf1449d5b06612cc07e599d7.setOption(option_736c964eaf1449d5b06612
 
 
 
-### 不合理之处：在某些点，年终奖增加的时候，纳税额显著增加，导致净收入反而减少。
+### 明显不合理之处：在某些点，年终奖增加的时候，纳税额显著增加，导致净收入反而减少。
 
-**** 不合理的点的位置：96万，66万，42万 ****
+**** 明显合理的点的位置：96万，66万，42万 ****
 
 |年终奖|纳税额|净收入|
 |-----|-----|------|
@@ -6489,8 +6529,15 @@ myChart_736c964eaf1449d5b06612cc07e599d7.setOption(option_736c964eaf1449d5b06612
 |660001|225495.35|434505.65|
 |660000|195245.00|464755.00|
 
+**** 真的是年终奖多发一分钱，净收入减少好几万啊？ 这规则的确得改啊 ****
 
 ### 3.2 可以在工资和奖金之间平衡，达到最低税率
+
+工资和奖金都纳税，但纳税算法完全不同，所以就产生了一个话题：
+
+**** 假如公司说扣除五险一金后，公司给你每年发100万，那多少用来发工资，多少用来发奖金，才能交税最少呢？ ****
+
+我们来解密一下这个问题的答案。
 
 
 ```python
@@ -6514,10 +6561,10 @@ def calc_tax_line(total):
 ```python
 from pyecharts import Line
 
-line = Line('旧税制税率曲线（避税用）', width=800, height=600)
-line.add('100万年收入', ratio, calc_tax_line(1000000), mark_point=["min"])
-line.add('50万年收入', ratio, calc_tax_line(500000), mark_point=["min"])
-line.add('25万年收入', ratio, calc_tax_line(250000), mark_point=["min"])
+line = Line('旧税制税率曲线（合理避税）', width=800, height=600)
+line.add('100万年收入', ratio, calc_tax_line(1000000), mark_point=["min", "max"])
+line.add('50万年收入', ratio, calc_tax_line(500000), mark_point=["min", "max"])
+line.add('25万年收入', ratio, calc_tax_line(250000), mark_point=["min", "max"])
 line
 ```
 
@@ -6531,18 +6578,18 @@ line
         }
     });
 </script>
-    <div id="b0964ef74f9642259576a954427553b9" style="width:800px;height:600px;"></div>
+    <div id="3490096912254e1b9060fe094cded4e8" style="width:800px;height:600px;"></div>
 
 
 <script>
     require(['echarts'], function(echarts) {
         
-var myChart_b0964ef74f9642259576a954427553b9 = echarts.init(document.getElementById('b0964ef74f9642259576a954427553b9'), null, {renderer: 'canvas'});
+var myChart_3490096912254e1b9060fe094cded4e8 = echarts.init(document.getElementById('3490096912254e1b9060fe094cded4e8'), null, {renderer: 'canvas'});
 
-var option_b0964ef74f9642259576a954427553b9 = {
+var option_3490096912254e1b9060fe094cded4e8 = {
     "title": [
         {
-            "text": "\u65e7\u7a0e\u5236\u7a0e\u7387\u66f2\u7ebf\uff08\u907f\u7a0e\u7528\uff09",
+            "text": "\u65e7\u7a0e\u5236\u7a0e\u7387\u66f2\u7ebf\uff08\u5408\u7406\u907f\u7a0e\uff09",
             "subtext": "",
             "left": "auto",
             "top": "auto",
@@ -6574,7 +6621,7 @@ var option_b0964ef74f9642259576a954427553b9 = {
             }
         }
     },
-    "series_id": 438111,
+    "series_id": 1165722,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -6748,13 +6795,27 @@ var option_b0964ef74f9642259576a954427553b9 = {
                                 }
                             }
                         }
+                    },
+                    {
+                        "type": "max",
+                        "name": "Maximum",
+                        "valueDim": null,
+                        "symbol": "pin",
+                        "symbolSize": 50,
+                        "label": {
+                            "normal": {
+                                "textStyle": {
+                                    "color": "#fff"
+                                }
+                            }
+                        }
                     }
                 ]
             },
             "markLine": {
                 "data": []
             },
-            "seriesId": 438111
+            "seriesId": 1165722
         },
         {
             "type": "line",
@@ -6913,13 +6974,27 @@ var option_b0964ef74f9642259576a954427553b9 = {
                                 }
                             }
                         }
+                    },
+                    {
+                        "type": "max",
+                        "name": "Maximum",
+                        "valueDim": null,
+                        "symbol": "pin",
+                        "symbolSize": 50,
+                        "label": {
+                            "normal": {
+                                "textStyle": {
+                                    "color": "#fff"
+                                }
+                            }
+                        }
                     }
                 ]
             },
             "markLine": {
                 "data": []
             },
-            "seriesId": 438111
+            "seriesId": 1165722
         },
         {
             "type": "line",
@@ -7078,13 +7153,27 @@ var option_b0964ef74f9642259576a954427553b9 = {
                                 }
                             }
                         }
+                    },
+                    {
+                        "type": "max",
+                        "name": "Maximum",
+                        "valueDim": null,
+                        "symbol": "pin",
+                        "symbolSize": 50,
+                        "label": {
+                            "normal": {
+                                "textStyle": {
+                                    "color": "#fff"
+                                }
+                            }
+                        }
                     }
                 ]
             },
             "markLine": {
                 "data": []
             },
-            "seriesId": 438111
+            "seriesId": 1165722
         }
     ],
     "legend": [
@@ -7302,7 +7391,7 @@ var option_b0964ef74f9642259576a954427553b9 = {
         "#f6f5ec"
     ]
 };
-myChart_b0964ef74f9642259576a954427553b9.setOption(option_b0964ef74f9642259576a954427553b9);
+myChart_3490096912254e1b9060fe094cded4e8.setOption(option_3490096912254e1b9060fe094cded4e8);
 
     });
 </script>
@@ -7318,13 +7407,15 @@ myChart_b0964ef74f9642259576a954427553b9.setOption(option_b0964ef74f9642259576a9
 
 3. 对于25万年收入的人来说，最好的综合税率是0.128，最佳基本月薪也在5000左右，其余部分发年终奖。
 
+4. 不管哪种情况下，全部用工资来发，综合税率最高。
+
 ## 第四部分：新税制的主要特点及税额变化情况
 
 （一） 新税制 解决了 当前税制的上述两个主要问题
 
 （二） 新税制 对阶梯税率进行了调整，对纳税人的纳税金额产生了影响
 
-### 4.1  计算新老税制下的纳税情况
+### 4.1  计算新老税制下的纳税情况计算
 
 
 ```python
@@ -7388,10 +7479,15 @@ def get_data_arr(type_t):
     return d_array
 ```
 
-### 4.2 当前个税税额分布热图
+**** 下面将用图表的形式，展示新老税制下纳税情况的变化，相关说明如下： ****
 
 + X轴：月工资收入（扣除五险一金之后）
 + Y轴：年度奖金收入
++ 图中颜色越深，代表数字越大
+
+### 4.2 新旧个税数额分布热图
+
+#### 4.2.1 当前个税税额分布热图
 
 
 ```python
@@ -27661,7 +27757,7 @@ myChart_32a096e9448e41d2a6866cad31347119.setOption(option_32a096e9448e41d2a6866c
 
 
 
-### 4.3 新税制个税税额分布热图
+#### 4.2.2 新税制个税税额分布热图
 
 
 ```python
@@ -47931,9 +48027,9 @@ myChart_6b6836b8034b4a609814fa7d76e1a070.setOption(option_6b6836b8034b4a609814fa
 
 
 
-### 4.4 新旧个税降幅分布热图
+### 4.3 新旧个税降幅分布热图
 
-#### 4.4.1. 降税金额
+#### 4.3.1. 降税金额
 
 
 ```python
@@ -68216,7 +68312,7 @@ myChart_1e63c490b4d04a79b0e95b2925124c69.setOption(option_1e63c490b4d04a79b0e95b
 3. 图中深蓝色区域的部分，减税额度最大，这类人月收入较低，但奖金极高（60万以上）。似乎是很多销售人员的收入结构。看来本次税改对销售人员最有利？
 
 
-#### 4.4.2. 降税幅度
+#### 4.3.2. 降税幅度
 
 计算公式：（新税-旧税）/ 旧税
 
@@ -88497,9 +88593,9 @@ myChart_d6d5bfcfdf3e4d85a11fdf4b4b900769.setOption(option_d6d5bfcfdf3e4d85a11fdf
 
 2. 高收入人群（对角线右上侧）实际上是增税的，最高增税幅度超过11%。
 
-### 4.5 新旧税率分布热图
+### 4.4 新旧综合税率分布热图
 
-#### 4.5.1 当前税率分布热图
+#### 4.4.1 当前综合税率分布热图
 
 
 ```python
@@ -88508,7 +88604,7 @@ from pyecharts import HeatMap
 type_t = 'rate_old'
 d_array = get_data_arr(type_t)
 heatmap = HeatMap()
-heatmap.add("旧税率分布图", incm_arr, bonus_arr, d_array, is_visualmap=True, 
+heatmap.add("当前综合税率分布图", incm_arr, bonus_arr, d_array, is_visualmap=True, 
             range_color = ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf',
                '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
             visual_range=[0, 40],
@@ -88526,15 +88622,15 @@ heatmap
         }
     });
 </script>
-    <div id="51552cac42e044e3a686f8bc406c4861" style="width:800px;height:400px;"></div>
+    <div id="96d22e98ab8046df9dd1f4052a086313" style="width:800px;height:400px;"></div>
 
 
 <script>
     require(['echarts'], function(echarts) {
         
-var myChart_51552cac42e044e3a686f8bc406c4861 = echarts.init(document.getElementById('51552cac42e044e3a686f8bc406c4861'), null, {renderer: 'canvas'});
+var myChart_96d22e98ab8046df9dd1f4052a086313 = echarts.init(document.getElementById('96d22e98ab8046df9dd1f4052a086313'), null, {renderer: 'canvas'});
 
-var option_51552cac42e044e3a686f8bc406c4861 = {
+var option_96d22e98ab8046df9dd1f4052a086313 = {
     "title": [
         {
             "text": "",
@@ -88569,7 +88665,7 @@ var option_51552cac42e044e3a686f8bc406c4861 = {
             }
         }
     },
-    "series_id": 1090113,
+    "series_id": 2277564,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -88588,7 +88684,7 @@ var option_51552cac42e044e3a686f8bc406c4861 = {
     "series": [
         {
             "type": "heatmap",
-            "name": "\u65e7\u7a0e\u7387\u5206\u5e03\u56fe",
+            "name": "\u5f53\u524d\u7efc\u5408\u7a0e\u7387\u5206\u5e03\u56fe",
             "data": [
                 [
                     0,
@@ -108484,13 +108580,13 @@ var option_51552cac42e044e3a686f8bc406c4861 = {
                     }
                 }
             },
-            "seriesId": 1090113
+            "seriesId": 2277564
         }
     ],
     "legend": [
         {
             "data": [
-                "\u65e7\u7a0e\u7387\u5206\u5e03\u56fe"
+                "\u5f53\u524d\u7efc\u5408\u7a0e\u7387\u5206\u5e03\u56fe"
             ],
             "selectedMode": "multiple",
             "show": true,
@@ -108762,7 +108858,7 @@ var option_51552cac42e044e3a686f8bc406c4861 = {
         "showLabel": true
     }
 };
-myChart_51552cac42e044e3a686f8bc406c4861.setOption(option_51552cac42e044e3a686f8bc406c4861);
+myChart_96d22e98ab8046df9dd1f4052a086313.setOption(option_96d22e98ab8046df9dd1f4052a086313);
 
     });
 </script>
@@ -108770,7 +108866,7 @@ myChart_51552cac42e044e3a686f8bc406c4861.setOption(option_51552cac42e044e3a686f8
 
 
 
-#### 4.5.2 新税制税率分布热图
+#### 4.4.2 新税制综合税率分布热图
 
 
 ```python
@@ -108779,7 +108875,7 @@ from pyecharts import HeatMap
 type_t = 'rate_new'
 d_array = get_data_arr(type_t)
 heatmap = HeatMap()
-heatmap.add("新税率分布图", incm_arr, bonus_arr, d_array, is_visualmap=True, 
+heatmap.add("新税制综合税率分布图", incm_arr, bonus_arr, d_array, is_visualmap=True, 
             range_color = ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf',
                '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
             visual_range=[0, 40],
@@ -108798,15 +108894,15 @@ heatmap
         }
     });
 </script>
-    <div id="d6c97daa868842fa8e13bca76f67146a" style="width:800px;height:400px;"></div>
+    <div id="e28225bccdce45aea0ef253351457907" style="width:800px;height:400px;"></div>
 
 
 <script>
     require(['echarts'], function(echarts) {
         
-var myChart_d6c97daa868842fa8e13bca76f67146a = echarts.init(document.getElementById('d6c97daa868842fa8e13bca76f67146a'), null, {renderer: 'canvas'});
+var myChart_e28225bccdce45aea0ef253351457907 = echarts.init(document.getElementById('e28225bccdce45aea0ef253351457907'), null, {renderer: 'canvas'});
 
-var option_d6c97daa868842fa8e13bca76f67146a = {
+var option_e28225bccdce45aea0ef253351457907 = {
     "title": [
         {
             "text": "",
@@ -108841,7 +108937,7 @@ var option_d6c97daa868842fa8e13bca76f67146a = {
             }
         }
     },
-    "series_id": 8275564,
+    "series_id": 2789859,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -108860,7 +108956,7 @@ var option_d6c97daa868842fa8e13bca76f67146a = {
     "series": [
         {
             "type": "heatmap",
-            "name": "\u65b0\u7a0e\u7387\u5206\u5e03\u56fe",
+            "name": "\u65b0\u7a0e\u5236\u7efc\u5408\u7a0e\u7387\u5206\u5e03\u56fe",
             "data": [
                 [
                     0,
@@ -128756,13 +128852,13 @@ var option_d6c97daa868842fa8e13bca76f67146a = {
                     }
                 }
             },
-            "seriesId": 8275564
+            "seriesId": 2789859
         }
     ],
     "legend": [
         {
             "data": [
-                "\u65b0\u7a0e\u7387\u5206\u5e03\u56fe"
+                "\u65b0\u7a0e\u5236\u7efc\u5408\u7a0e\u7387\u5206\u5e03\u56fe"
             ],
             "selectedMode": "multiple",
             "show": true,
@@ -129034,7 +129130,7 @@ var option_d6c97daa868842fa8e13bca76f67146a = {
         "showLabel": true
     }
 };
-myChart_d6c97daa868842fa8e13bca76f67146a.setOption(option_d6c97daa868842fa8e13bca76f67146a);
+myChart_e28225bccdce45aea0ef253351457907.setOption(option_e28225bccdce45aea0ef253351457907);
 
     });
 </script>
@@ -129042,7 +129138,7 @@ myChart_d6c97daa868842fa8e13bca76f67146a.setOption(option_d6c97daa868842fa8e13bc
 
 
 
-#### 4.5.3 新旧税制税率差额
+#### 4.4.3 新旧税制综合税率差额
 
 
 ```python
@@ -129051,7 +129147,7 @@ from pyecharts import HeatMap
 type_t = 'rate_diff'
 d_array = get_data_arr(type_t)
 heatmap = HeatMap()
-heatmap.add("新旧税率差额分布图", incm_arr, bonus_arr, d_array, is_visualmap=True, 
+heatmap.add("新旧税制综合税率差额分布图", incm_arr, bonus_arr, d_array, is_visualmap=True, 
             range_color = ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf',
                '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
             visual_range=[-10, 10],
@@ -129069,15 +129165,15 @@ heatmap
         }
     });
 </script>
-    <div id="8068cc1a8bc9415ab03537c05dacfaba" style="width:800px;height:400px;"></div>
+    <div id="31bbfb1e17c742489e806a9ae0564bd5" style="width:800px;height:400px;"></div>
 
 
 <script>
     require(['echarts'], function(echarts) {
         
-var myChart_8068cc1a8bc9415ab03537c05dacfaba = echarts.init(document.getElementById('8068cc1a8bc9415ab03537c05dacfaba'), null, {renderer: 'canvas'});
+var myChart_31bbfb1e17c742489e806a9ae0564bd5 = echarts.init(document.getElementById('31bbfb1e17c742489e806a9ae0564bd5'), null, {renderer: 'canvas'});
 
-var option_8068cc1a8bc9415ab03537c05dacfaba = {
+var option_31bbfb1e17c742489e806a9ae0564bd5 = {
     "title": [
         {
             "text": "",
@@ -129112,7 +129208,7 @@ var option_8068cc1a8bc9415ab03537c05dacfaba = {
             }
         }
     },
-    "series_id": 7248685,
+    "series_id": 1432933,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -129131,7 +129227,7 @@ var option_8068cc1a8bc9415ab03537c05dacfaba = {
     "series": [
         {
             "type": "heatmap",
-            "name": "\u65b0\u65e7\u7a0e\u7387\u5dee\u989d\u5206\u5e03\u56fe",
+            "name": "\u65b0\u65e7\u7a0e\u5236\u7efc\u5408\u7a0e\u7387\u5dee\u989d\u5206\u5e03\u56fe",
             "data": [
                 [
                     0,
@@ -149027,13 +149123,13 @@ var option_8068cc1a8bc9415ab03537c05dacfaba = {
                     }
                 }
             },
-            "seriesId": 7248685
+            "seriesId": 1432933
         }
     ],
     "legend": [
         {
             "data": [
-                "\u65b0\u65e7\u7a0e\u7387\u5dee\u989d\u5206\u5e03\u56fe"
+                "\u65b0\u65e7\u7a0e\u5236\u7efc\u5408\u7a0e\u7387\u5dee\u989d\u5206\u5e03\u56fe"
             ],
             "selectedMode": "multiple",
             "show": true,
@@ -149305,7 +149401,7 @@ var option_8068cc1a8bc9415ab03537c05dacfaba = {
         "showLabel": true
     }
 };
-myChart_8068cc1a8bc9415ab03537c05dacfaba.setOption(option_8068cc1a8bc9415ab03537c05dacfaba);
+myChart_31bbfb1e17c742489e806a9ae0564bd5.setOption(option_31bbfb1e17c742489e806a9ae0564bd5);
 
     });
 </script>
@@ -149313,11 +149409,11 @@ myChart_8068cc1a8bc9415ab03537c05dacfaba.setOption(option_8068cc1a8bc9415ab03537
 
 
 
-#### 4.5.4 结论
+#### 4.4.4 结论
 
-+ 在月收入2万左右，年终奖在20万左右的人群，综合税率下降的幅度较大，达到 6-7%。（这一般是公司白领的收入区间）
++ 在月收入1.5万-3万左右，年终奖在5万左右的人群，综合税率下降的幅度较大，达到 6-7%。（这似乎是为码农设计的税率？哈哈哈）
 
-+ 低工资高奖金的人群，综合税率下降幅度最大，最高可达10%。（这似乎是销售人员喜欢的方式）
++ 低工资高奖金的人群，综合税率下降幅度最大，最高可达10%左右。（这似乎是销售人员喜欢的方式？）
 
 
 # 全文结论
@@ -149326,9 +149422,7 @@ myChart_8068cc1a8bc9415ab03537c05dacfaba.setOption(option_8068cc1a8bc9415ab03537
 
 ## 1. 税制改进
 
-+ 大家也许吐槽过旧税制，通过调整年终奖和月薪比例可以让你的个税税率降低。
-
-+ 别人家的企业都通过这个来帮员工省税，但是你家公司就不帮你做这个事，于是相同的年薪情况下你一直交着比别人高的税，而新税制则彻底修复了这个问题。
++ 大家也许吐槽过旧税制，通过调整年终奖和月薪比例可以让你的个税税率降低。+ 别人家的企业都通过这个来帮员工省税，但是你家公司就不帮你做这个事，于是相同的年薪情况下你一直交着比别人高的税，而新税制则彻底修复了这个问题。
 
 + 旧税制下税率分布不合理，例如相同月薪下，在一定范围内奖金发越多，整体税率反而会降低。而新税制下，则是严格的高收入高税率，无论怎么调整奖金和月工资都无法降低整体税率。
 
@@ -149347,11 +149441,11 @@ myChart_8068cc1a8bc9415ab03537c05dacfaba.setOption(option_8068cc1a8bc9415ab03537
 
 + 个税改革不是全面降税，中低收入人群少交税，高收入人群多交税，这符合税制改革的初衷。
 
-+ 仅仅因为部分高收入人群要多交税，就说税制改革实质增税有失偏颇。
++ 仅仅因为部分高收入人群要多交税，就说税制改革实质增税有失偏颇。不要做标题党。
 
-+ 个税改革是个大事情，还是要多征求人们群众的意见。
++ 个税改革是个大事情，的确要多征求人们群众的意见。比如那些可能被加税的部门经理们？
 
-+ 下面两张图标出了增税区间，土豪们请对号入座，如果您的收入超出了这个图的范围，请理解下被贫穷限制了想象力的吃瓜群众。
++ 下面的图标出了增税区间，土豪们请对号入座，如果您的收入超出了这个图的范围，请理解下被贫穷限制了想象力的吃瓜群众。
 
 
 
@@ -149379,15 +149473,15 @@ heatmap
         }
     });
 </script>
-    <div id="ff44fba5c60546629d6a8383e48f67de" style="width:800px;height:400px;"></div>
+    <div id="439315f0f4da4b20a0a341f03b2d3867" style="width:800px;height:400px;"></div>
 
 
 <script>
     require(['echarts'], function(echarts) {
         
-var myChart_ff44fba5c60546629d6a8383e48f67de = echarts.init(document.getElementById('ff44fba5c60546629d6a8383e48f67de'), null, {renderer: 'canvas'});
+var myChart_439315f0f4da4b20a0a341f03b2d3867 = echarts.init(document.getElementById('439315f0f4da4b20a0a341f03b2d3867'), null, {renderer: 'canvas'});
 
-var option_ff44fba5c60546629d6a8383e48f67de = {
+var option_439315f0f4da4b20a0a341f03b2d3867 = {
     "title": [
         {
             "text": "",
@@ -149422,7 +149516,7 @@ var option_ff44fba5c60546629d6a8383e48f67de = {
             }
         }
     },
-    "series_id": 7153051,
+    "series_id": 2148158,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -169337,7 +169431,7 @@ var option_ff44fba5c60546629d6a8383e48f67de = {
                     }
                 }
             },
-            "seriesId": 7153051
+            "seriesId": 2148158
         }
     ],
     "legend": [
@@ -169615,7 +169709,7 @@ var option_ff44fba5c60546629d6a8383e48f67de = {
         "showLabel": true
     }
 };
-myChart_ff44fba5c60546629d6a8383e48f67de.setOption(option_ff44fba5c60546629d6a8383e48f67de);
+myChart_439315f0f4da4b20a0a341f03b2d3867.setOption(option_439315f0f4da4b20a0a341f03b2d3867);
 
     });
 </script>
